@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <title>Personajes de videojuegos</title>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <table class="table">
+            <thead>
+                <tr  class="table table-dark">
+                    <th scope="col" align="center">Personaje</th>
+                    <th scope="col" align="center">Franqucia</th>
+                    <th scope="col" align="center">Año de creación</th>
+                    <th scope="col" align="center">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% table.forEach((name)=>{ %>
+                    <tr>
+                        <td>
+                            <%= name.name %>
+                        </td>
+                        <td>
+                            <%= name.franchise %>
+                        </td>
+                        <td>
+                            <%= name.year %>
+                        </td>
+                        <td>
+                            <form action="/edit" method="post">
+                                <input type="hidden" name="name" value="<%=name.name %>">
+                                <input type="hidden" name="franchise" value="<%=name.franchise %>">
+                                <input type="hidden" name="year" value="<%=name.year %>">
+                                <button type="submmit" class="btn btn-light">Editar</button>
+                            </form>
+                            <form action="/delete" method="post">
+                                <input type="hidden" name="name" value="<%=name.name %>">
+                                <button type="submmit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% })%>
+            </tbody>
+        </table>
+        <a type="button" class="btn btn-primary" href="/add">Añadir</a>
+    </div>
+</body>
+
+</html>
